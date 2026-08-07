@@ -1,0 +1,79 @@
+/*================ RÉSERVATION ================*/
+
+.reservation{
+
+padding:100px 8%;
+
+background:#fdf8f2;
+
+}
+
+.reservation-container{
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.reservation-form{
+
+width:700px;
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 15px 30px rgba(0,0,0,.1);
+
+}
+
+.reservation-form h2{
+
+text-align:center;
+
+margin-bottom:30px;
+
+color:#7B1E1E;
+
+}
+
+.reservation-form input,
+
+.reservation-form select,
+
+.reservation-form textarea{
+
+width:100%;
+
+padding:15px;
+
+margin-bottom:20px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+.reservation-form textarea{
+
+height:150px;
+
+resize:none;
+
+}
+
+.reservation-form button{
+
+width:100%;
+
+cursor:pointer;
+
+}

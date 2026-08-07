@@ -1,0 +1,97 @@
+/*================ CONTACT ================*/
+
+.contact{
+
+    padding:100px 8%;
+
+    background:#fdf8f2;
+
+}
+
+.contact-container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:50px;
+
+}
+
+.contact-info{
+
+    background:#7B1E1E;
+
+    color:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+}
+
+.contact-info h2{
+
+    margin-bottom:30px;
+
+}
+
+.contact-info p{
+
+    margin:20px 0;
+
+    font-size:18px;
+
+}
+
+.contact-info i{
+
+    color:#D4AF37;
+
+    margin-right:12px;
+
+}
+
+.contact-form{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+
+}
+
+.contact-form form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.contact-form input,
+
+.contact-form textarea{
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:16px;
+
+}
+
+.contact-form textarea{
+
+    resize:none;
+
+}
