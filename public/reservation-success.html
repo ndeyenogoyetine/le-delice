@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement réussi | Le Délice</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reservation.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+<section class="reservation">
+    <div class="reservation-container">
+        <div class="form-success-box" style="display:flex;">
+            <i class="fas fa-check-circle"></i>
+            <p id="statusMessage">Vérification de votre paiement...</p>
+            <a href="index.html" class="btn-menu" style="margin-top:20px;">Retour à l'accueil</a>
+        </div>
+    </div>
+</section>
+
+<script>
+(async function () {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get("session_id");
+  const statusMessage = document.getElementById("statusMessage");
+
+  if (!sessionId) {
+    statusMessage.textContent = "Session de paiement introuvable.";
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/payment/verify/${sessionId}`);
+    const data = await res.json();
+
+    statusMessage.textContent = data.paid
+      ? "🎉 Paiement confirmé ! Votre réservation est validée."
+      : "Le paiement n'a pas pu être confirmé. Contactez-nous si le montant a été débité.";
+  } catch (err) {
+    statusMessage.textContent = "Impossible de vérifier le paiement pour le moment.";
+  }
+})();
+</script>
+</body>
+</html>

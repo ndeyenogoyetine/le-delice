@@ -104,3 +104,24 @@
     color:#fff;
 
 }
+.btn-order{
+    display:block;
+    margin:15px;
+    text-align:center;
+    background:#7B1E1E;
+    color:white;
+    padding:10px;
+    border-radius:30px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.btn-commander:hover{
+    background:#D4AF37;
+}
+.about-content p{
+
+font-size:18px;
+line-height:1.9;
+
+}

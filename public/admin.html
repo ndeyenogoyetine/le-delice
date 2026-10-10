@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration | Le Délice</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="Logo Le Délice">
+            <span>Le Délice</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Voir le site</a></li>
+            <li><a href="admin.html" class="active">Administration</a></li>
+            <li id="nav-auth"></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="admin-page">
+
+    <div id="checkingAccess" class="admin-center"><p>Vérification de vos droits d'accès...</p></div>
+
+    <div id="accessDenied" class="admin-center" style="display:none;">
+        <i class="fas fa-lock" style="font-size:50px; color:#7B1E1E;"></i>
+        <h2 style="color:#7B1E1E; margin-top:20px;">Accès réservé à l'administrateur</h2>
+        <p>Vous n'avez pas les droits pour accéder à cette page.</p>
+        <a href="index.html" class="btn-menu" style="display:inline-block; margin-top:20px;">Retour à l'accueil</a>
+    </div>
+
+    <div id="adminContent" style="display:none;">
+
+        <div class="admin-header">
+            <h1><i class="fas fa-gear"></i> Administration</h1>
+            <button id="btnRefresh" class="btn-menu"><i class="fas fa-sync"></i> Actualiser</button>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="orders"><i class="fas fa-receipt"></i> Commandes</button>
+            <button class="tab-btn" data-tab="products"><i class="fas fa-utensils"></i> Produits</button>
+            <button class="tab-btn" data-tab="clients"><i class="fas fa-users"></i> Clients</button>
+        </div>
+
+        <!-- ================= ONGLET COMMANDES ================= -->
+        <div id="tab-orders" class="tab-panel">
+
+            <div class="admin-stats">
+                <div class="stat-card"><i class="fas fa-calendar-check"></i><h3 id="statTotal">0</h3><p>Commandes</p></div>
+                <div class="stat-card"><i class="fas fa-hourglass-half"></i><h3 id="statPending">0</h3><p>En attente</p></div>
+                <div class="stat-card"><i class="fas fa-check-circle"></i><h3 id="statConfirmed">0</h3><p>Confirmées</p></div>
+                <div class="stat-card"><i class="fas fa-coins"></i><h3 id="statRevenue">0 FCFA</h3><p>Encaissé</p></div>
+            </div>
+
+            <div class="admin-filters">
+                <button class="filter-chip active" data-filter="tous">Toutes</button>
+                <button class="filter-chip" data-filter="en_attente">En attente</button>
+                <button class="filter-chip" data-filter="confirmee">Confirmées</button>
+                <button class="filter-chip" data-filter="annulee">Annulées</button>
+                <button class="filter-chip" data-filter="card">Carte</button>
+                <button class="filter-chip" data-filter="orange_money">Orange Money</button>
+                <button class="filter-chip" data-filter="wave">Wave</button>
+                <button class="filter-chip" data-filter="sur_place">Sur place</button>
+            </div>
+
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>N°</th><th>Client</th><th>Date / Heure</th><th>Places</th>
+                            <th>Commande</th><th>Total</th><th>Paiement</th><th>Statut</th><th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersBody"></tbody>
+                </table>
+                <p id="ordersEmpty" class="empty-message" style="display:none;">Aucune commande pour le moment.</p>
+            </div>
+        </div>
+
+        <!-- ================= ONGLET PRODUITS ================= -->
+        <div id="tab-products" class="tab-panel" style="display:none;">
+
+            <div class="admin-toolbar">
+                <p>Ajoutez, modifiez ou supprimez les plats que les clients peuvent commander.</p>
+                <button id="btnNewProduct" class="btn-menu"><i class="fas fa-plus"></i> Ajouter un produit</button>
+            </div>
+
+            <form id="productForm" class="product-form" style="display:none;">
+                <h3 id="productFormTitle">Nouveau produit</h3>
+                <p id="productError" class="form-error" style="display:none;"></p>
+                <input type="hidden" id="pId">
+                <div class="product-grid">
+                    <div><label>Nom</label><input type="text" id="pName" required></div>
+                    <div><label>Catégorie</label>
+                        <select id="pCategory">
+                            <option value="plat">Plat</option>
+                            <option value="boisson">Boisson</option>
+                            <option value="dessert">Dessert</option>
+                        </select>
+                    </div>
+                    <div><label>Prix (FCFA)</label><input type="number" id="pPrice" min="0" step="50" required></div>
+                    <div><label>Image (chemin)</label><input type="text" id="pImage" placeholder="images/plats/thieb.jpg"></div>
+                </div>
+                <label>Description</label>
+                <input type="text" id="pDescription" placeholder="Courte description (facultatif)">
+                <label class="check"><input type="checkbox" id="pAvailable" checked> Disponible à la commande</label>
+                <div class="product-form-buttons">
+                    <button type="submit" class="btn-menu"><i class="fas fa-floppy-disk"></i> Enregistrer</button>
+                    <button type="button" id="btnCancelProduct" class="btn-cancel">Annuler</button>
+                </div>
+            </form>
+
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Image</th><th>Nom</th><th>Catégorie</th><th>Prix</th><th>Statut</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody id="productsBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ================= ONGLET CLIENTS ================= -->
+        <div id="tab-clients" class="tab-panel" style="display:none;">
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr><th>Client</th><th>Email</th><th>Téléphone</th><th>Inscrit le</th><th>Commandes</th><th>Total dépensé</th></tr>
+                    </thead>
+                    <tbody id="clientsBody"></tbody>
+                </table>
+                <p id="clientsEmpty" class="empty-message" style="display:none;">Aucun client inscrit pour le moment.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script src="js/script.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

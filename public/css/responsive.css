@@ -1,0 +1,207 @@
+/* ============================================================
+   RESPONSIVE GLOBAL - Le Délice
+   ============================================================ */
+
+/* Empêche les éléments avec padding de dépasser leur conteneur */
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
+}
+
+/* Cartes de témoignages : plus de largeur fixe (cause de débordement) */
+.testimonials-container .testimonial-card{
+    width:auto;
+    max-width:100%;
+    flex:1 1 300px;
+    min-width:0;
+}
+
+/* Le header est fixe : on décale TOUT le contenu (toutes les pages) */
+body{
+    padding-top:96px;
+    overflow-x:hidden;
+}
+main{
+    padding-top:0;
+}
+img{
+    max-width:100%;
+}
+
+/* ---------------- Écrans moyens : menu plus compact ---------------- */
+@media (max-width:1500px){
+    .navbar{ padding:14px 3%; }
+    .nav-links{ gap:18px; }
+    .nav-links a{ font-size:15px; }
+    .logo span{ font-size:30px; }
+    .logo img{ width:50px; height:50px; }
+    .btn-reserver{ padding:10px 20px; font-size:15px; }
+}
+
+/* ---------------- Menu burger (la barre est trop large en dessous) ---------------- */
+@media (max-width:1300px){
+
+    body{ padding-top:80px; }
+
+    .navbar{
+        position:relative;
+        padding:12px 20px;
+        gap:15px;
+    }
+
+    .menu-toggle{
+        display:block;
+        order:0;
+        color:#fff;
+        font-size:28px;
+        cursor:pointer;
+    }
+
+    .logo{ order:1; margin-right:auto; }
+    .logo span{ font-size:24px; }
+    .btn-reserver{ order:2; padding:10px 18px; font-size:14px; }
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        background:#7B1E1E;
+        flex-direction:column;
+        gap:0;
+        padding:10px 0;
+        text-align:center;
+        box-shadow:0 10px 20px rgba(0,0,0,.25);
+    }
+    .nav-links.active{ display:flex; }
+    .nav-links li{ padding:12px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+    .nav-links li:last-child{ border-bottom:none; }
+}
+
+/* ---------------- Tablette ---------------- */
+@media (max-width:992px){
+
+    .hero,
+    .about,
+    .our-story{
+        flex-direction:column;
+        text-align:center;
+        gap:40px;
+    }
+    .hero{ padding:50px 5% 50px; }
+    .hero-text,
+    .hero-image,
+    .about-image,
+    .about-content,
+    .story-image,
+    .story-content{ width:100%; flex:none; }
+    .hero-buttons,
+    .hero-stats{ justify-content:center; flex-wrap:wrap; }
+
+    .gallery-container{ grid-template-columns:repeat(2,1fr); }
+
+    .contact-container{ grid-template-columns:1fr; flex-direction:column; }
+
+    .story-content h2{ font-size:34px; }
+
+    /* Réservation : formulaire puis récapitulatif, l'un sous l'autre */
+    .order-layout{ grid-template-columns:1fr; }
+    .order-summary{ position:static; }
+}
+
+/* ---------------- Mobile ---------------- */
+@media (max-width:768px){
+
+    section,
+    .specialites,
+    .gallery,
+    .testimonials,
+    .contact,
+    .about,
+    .values,
+    .team,
+    .why-us,
+    .our-story,
+    .cta,
+    .reservation{
+        padding-left:5%;
+        padding-right:5%;
+    }
+    .specialites,
+    .gallery,
+    .testimonials,
+    .contact,
+    .values,
+    .team,
+    .our-story,
+    .cta,
+    .reservation{ padding-top:60px; padding-bottom:60px; }
+
+    .hero-text h1{ font-size:38px; }
+    .hero-text h2{ font-size:22px; }
+    .hero-text p{ font-size:16px; }
+    .hero-buttons{ flex-direction:column; align-items:center; }
+    .hero-stats{ gap:25px; }
+    .hero-image img{ max-width:100%; }
+
+    .section-title h2{ font-size:30px; }
+
+    .page-banner{ height:260px; padding:0 5%; }
+    .banner-content h1{ font-size:34px; }
+    .banner-content p{ font-size:16px; }
+
+    .about-list{ grid-template-columns:1fr; text-align:left; }
+    .about-content h2{ font-size:30px; }
+
+    .gallery-container{ grid-template-columns:1fr; }
+    .gallery-item img{ height:240px; }
+
+    .testimonial-card{ width:100%; max-width:100%; }
+    .testimonials-container{ grid-template-columns:1fr; }
+
+    .team-card img{ height:300px; }
+    .why-container{ grid-template-columns:repeat(2,1fr); }
+    .why-card h3{ font-size:30px; }
+
+    .cta h2{ font-size:30px; }
+
+    .footer-container{ text-align:center; grid-template-columns:1fr; }
+    .social-links{ justify-content:center; }
+
+    .contact-info,
+    .contact-form{ padding:25px; }
+    .info-box{ text-align:left; }
+
+    .reservation-form{ width:100%; padding:25px; }
+    .order-summary{ padding:22px; }
+    .order-list li{ flex-direction:column; align-items:flex-start; }
+    .order-line-actions{ width:100%; justify-content:space-between; }
+    .field-row{ grid-template-columns:1fr; gap:0; }
+    .dish-picker{ flex-wrap:wrap; }
+    .dish-picker select{ flex:1 1 100%; }
+    .dish-picker input[type=number]{ flex:0 0 90px; }
+    .btn-add{ flex:1; padding:14px 18px; }
+    .form-buttons{ flex-direction:column-reverse; }
+
+    #backToTop{ bottom:20px; right:20px; }
+}
+
+/* ---------------- Petit mobile ---------------- */
+@media (max-width:480px){
+    .logo span{ font-size:20px; }
+    .logo img{ width:40px; height:40px; margin-right:8px; }
+    .btn-reserver{ display:none; }
+
+    .hero-text h1{ font-size:32px; }
+    .page-banner{ height:220px; }
+    .banner-content h1{ font-size:28px; }
+
+    .why-container{ grid-template-columns:1fr; }
+    .plat-card{ width:100%; }
+    .btn-menu,
+    .btn-contact{ padding:13px 26px; }
+    .value-card,
+    .reservation-form{ padding:20px; }
+}

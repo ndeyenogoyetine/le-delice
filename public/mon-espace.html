@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon espace client - Le Délice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f8f5f0;
+      color: #333;
+    }
+
+    header {
+      background: #5b2c20;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 950px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #00000010;
+    }
+
+    .reservation {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .statut {
+      font-weight: bold;
+      color: #80552b;
+    }
+
+    button {
+      background: #5b2c20;
+      color: white;
+      padding: 10px 15px;
+      border: 0;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #message {
+      margin: 15px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h2>Le Délice — Mon espace client</h2>
+    <nav>
+      <a href="index.html">Accueil</a>
+      &nbsp; | &nbsp;
+      <a href="reservation.html">Réserver</a>
+      &nbsp; | &nbsp;
+      <button id="logoutBtn">Déconnexion</button>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Bienvenue dans votre espace personnel</h1>
+    <p id="message">Chargement de votre compte...</p>
+
+    <section>
+      <h2>Mon profil</h2>
+      <p><strong>Nom :</strong> <span id="nom">—</span></p>
+      <p><strong>E-mail :</strong> <span id="email">—</span></p>
+    </section>
+
+    <section>
+      <h2>Mes réservations</h2>
+      <div id="reservations">Chargement des réservations...</div>
+    </section>
+  </main>
+
+  <script>
+    async function chargerEspaceClient() {
+      const message = document.getElementById("message");
+
+      try {
+        const reponse = await fetch("/api/auth/me");
+
+        if (!reponse.ok) {
+          window.location.href = "login.html";
+          return;
+        }
+
+        const donnees = await reponse.json();
+        const utilisateur = donnees.user;
+
+        document.getElementById("nom").textContent =
+          utilisateur.name || "Non renseigné";
+
+        document.getElementById("email").textContent =
+          utilisateur.email || "Non renseigné";
+
+        message.textContent = "Votre compte est connecté.";
+
+        const repReservations = await fetch("/api/reservations/mine");
+
+        if (!repReservations.ok) {
+          throw new Error("Impossible de récupérer vos réservations.");
+        }
+
+        const donneesReservations = await repReservations.json();
+        const liste = document.getElementById("reservations");
+        liste.replaceChildren();
+
+        const reservations = donneesReservations.reservations || [];
+
+        if (reservations.length === 0) {
+          liste.textContent =
+            "Vous n'avez pas encore de réservation. Vous pouvez réserver un plat dès maintenant.";
+          return;
+        }
+
+        reservations.forEach((reservation) => {
+          const carte = document.createElement("article");
+          carte.className = "reservation";
+
+          const titre = document.createElement("h3");
+          titre.textContent = "Réservation n°" + reservation.id;
+          carte.appendChild(titre);
+
+          const details = [
+            ["Date", reservation.date],
+            ["Heure", reservation.time],
+            ["Nombre de personnes", reservation.guests],
+            ["Montant", reservation.amount_due + " FCFA"],
+            ["Statut", reservation.reservation_status],
+            ["Paiement", reservation.payment_status]
+          ];
+
+          details.forEach(([libelle, valeur]) => {
+            const ligne = document.createElement("p");
+            ligne.textContent = libelle + " : " + (valeur ?? "Non renseigné");
+            carte.appendChild(ligne);
+          });
+
+          const plats = document.createElement("p");
+          const nomsPlats = (reservation.items || []).map(
+            (item) => item.product_name + " × " + item.quantity
+          );
+          plats.textContent = "Plats : " +
+            (nomsPlats.length ? nomsPlats.join(", ") : "Aucun plat indiqué");
+          carte.appendChild(plats);
+
+          liste.appendChild(carte);
+        });
+      } catch (erreur) {
+        message.textContent =
+          "Une erreur est survenue lors du chargement. Actualisez la page ou reconnectez-vous.";
+        console.error(erreur);
+      }
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      try {
+        await fetch("/api/auth/logout", { method: "POST" });
+      } finally {
+        window.location.href = "login.html";
+      }
+    });
+
+    chargerEspaceClient();
+  </script>
+</body>
+</html>
+```

@@ -1,0 +1,442 @@
+/*================ RÉSERVATION ================*/
+
+.reservation{
+
+padding:100px 8%;
+
+background:#fdf8f2;
+
+}
+
+.reservation-container{
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.reservation-form{
+
+width:100%;
+max-width:700px;
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 15px 30px rgba(0,0,0,.1);
+
+}
+
+.reservation-form h2{
+
+text-align:center;
+
+margin-bottom:30px;
+
+color:#7B1E1E;
+
+}
+
+.reservation-form input,
+
+.reservation-form select,
+
+.reservation-form textarea{
+
+width:100%;
+
+padding:15px;
+
+margin-bottom:20px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:16px;
+
+outline:none;
+
+}
+
+.reservation-form textarea{
+
+height:150px;
+
+resize:none;
+
+}
+
+.reservation-form button{
+
+width:100%;
+
+cursor:pointer;
+
+}
+
+/*================ BOUTONS VALIDER / ANNULER ================*/
+
+.form-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:10px;
+}
+
+.form-buttons .btn-menu{
+    flex:2;
+}
+
+.btn-cancel{
+    flex:1;
+    background:transparent;
+    color:#7B1E1E;
+    border:2px solid #7B1E1E;
+    border-radius:40px;
+    padding:15px 20px;
+    font-weight:600;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-cancel:hover{
+    background:#7B1E1E;
+    color:white;
+}
+
+/*================ MESSAGES ================*/
+
+.form-error{
+    background:#fdecea;
+    color:#b71c1c;
+    padding:14px 18px;
+    border-radius:10px;
+    margin-bottom:20px;
+    font-size:15px;
+}
+
+.form-success{
+    background:#e8f5e9;
+    color:#1b5e20;
+    padding:14px 18px;
+    border-radius:10px;
+    margin-top:15px;
+    font-size:15px;
+}
+
+.form-switch{
+    text-align:center;
+    margin-top:10px;
+    color:#555;
+}
+
+.form-switch a{
+    color:#D4AF37;
+    font-weight:600;
+    text-decoration:none;
+}
+
+/*================ MODES DE PAIEMENT ================*/
+
+.payment-methods{
+    margin-bottom:20px;
+}
+
+.payment-label{
+    font-weight:600;
+    color:#7B1E1E;
+    margin-bottom:12px;
+}
+
+.payment-option{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 18px;
+    border:2px solid #eee;
+    border-radius:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:.3s;
+    font-size:16px;
+}
+
+.payment-option:hover{
+    border-color:#D4AF37;
+}
+
+.payment-option input[type="radio"]{
+    width:auto;
+    margin:0;
+}
+
+.payment-option input[type="radio"]:checked ~ i,
+.payment-option:has(input:checked){
+    border-color:#D4AF37;
+    background:#fdf6e6;
+}
+
+.payment-option i{
+    color:#7B1E1E;
+    width:20px;
+}
+
+/*================ BOÎTE PAIEMENT MOBILE MONEY ================*/
+
+.mobile-payment-box{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,.1);
+    margin-top:20px;
+}
+
+.mobile-payment-box h3{
+    color:#7B1E1E;
+    margin-bottom:15px;
+}
+
+.mobile-payment-box input{
+    width:100%;
+    padding:15px;
+    margin:15px 0;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+/*================ BOÎTE DE SUCCÈS ================*/
+
+.form-success-box{
+    background:white;
+    padding:50px;
+    border-radius:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,.1);
+    text-align:center;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+}
+
+.form-success-box i{
+    font-size:60px;
+    color:#2e7d32;
+}
+
+/*================ MENU : ÉTAT DE CONNEXION ================*/
+
+.nav-user{
+    color:#D4AF37;
+    font-weight:600;
+    margin-right:10px;
+}
+
+#nav-auth a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+}
+
+#nav-auth a:hover{
+    color:#D4AF37;
+}
+/*================ RÉSERVATION : DEUX CÔTÉS ================*/
+
+.order-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+    gap:30px;
+    max-width:1150px;
+    margin:0 auto;
+    align-items:start;
+}
+
+.order-layout .reservation-form{
+    width:100%;
+    max-width:none;
+}
+
+.field-label{
+    display:block;
+    font-weight:600;
+    font-size:14px;
+    color:#7B1E1E;
+    margin-bottom:6px;
+}
+
+.field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.dish-picker{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.dish-picker select{
+    flex:1;
+    min-width:0;
+    margin-bottom:0;
+}
+
+.dish-picker input[type="number"]{
+    width:80px;
+    margin-bottom:0;
+    text-align:center;
+}
+
+.btn-add{
+    width:auto !important;
+    background:#7B1E1E;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    padding:0 18px;
+    font-weight:600;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:.3s;
+}
+
+.btn-add:hover{ background:#D4AF37; }
+
+/* ---------- Récapitulatif ---------- */
+.order-summary{
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 15px 30px rgba(0,0,0,.1);
+    position:sticky;
+    top:110px;
+    border-top:5px solid #D4AF37;
+}
+
+.order-summary h2{
+    color:#7B1E1E;
+    margin-bottom:20px;
+    font-size:26px;
+}
+
+.order-summary h2 i{ color:#D4AF37; margin-right:8px; }
+
+.order-empty{
+    color:#888;
+    background:#faf6ee;
+    padding:18px;
+    border-radius:12px;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.order-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.order-list li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid #eee;
+}
+
+.order-line-name{
+    font-weight:600;
+    color:#333;
+    min-width:0;
+}
+
+.order-line-name small{
+    display:block;
+    color:#888;
+    font-weight:400;
+    margin-top:3px;
+}
+
+.order-line-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+}
+
+.order-line-actions strong{
+    min-width:80px;
+    text-align:right;
+    color:#7B1E1E;
+    font-size:14px;
+}
+
+.qty-btn{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    border:1px solid #ddd;
+    background:#fff;
+    cursor:pointer;
+    font-size:15px;
+    line-height:1;
+    transition:.3s;
+}
+
+.qty-btn:hover{ background:#D4AF37; border-color:#D4AF37; color:#fff; }
+.qty-btn.remove{ color:#b71c1c; border-color:#f3c9c9; font-size:12px; }
+.qty-btn.remove:hover{ background:#b71c1c; border-color:#b71c1c; color:#fff; }
+
+.order-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+    font-size:18px;
+}
+
+.order-total strong{
+    color:#7B1E1E;
+    font-size:24px;
+}
+
+.summary-info{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:8px 15px;
+    padding:18px;
+    background:#faf6ee;
+    border-radius:12px;
+    margin-bottom:22px;
+    font-size:14px;
+}
+
+.summary-info dt{ color:#7B1E1E; font-weight:600; }
+.summary-info dd{ margin:0; color:#444; word-break:break-word; }
+
+.order-summary .form-buttons{ flex-direction:column; margin-top:0; }
+.order-summary .form-buttons .btn-menu,
+.order-summary .form-buttons .btn-cancel{
+    width:100%;
+    flex:none;
+    border:none;
+    cursor:pointer;
+    font-size:16px;
+    text-align:center;
+}
+.order-summary .form-buttons .btn-cancel{ border:2px solid #7B1E1E; }
+
+.mobile-payment-box,
+.form-success-box{
+    max-width:600px;
+    margin:0 auto;
+}
+
+.payment-option input[type="radio"]{ padding:0; margin:0; }

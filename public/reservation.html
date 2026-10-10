@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation | Le Délice</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reservation.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="Logo Le Délice">
+            <span>Le Délice</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="apropos.html">À propos</a></li>
+            <li><a href="specialites.html">Nos spécialités</a></li>
+            <li><a href="galerie.html">Galerie</a></li>
+            <li><a href="temoignages.html">Témoignages</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="reservation.html" class="active">Réservation</a></li>
+            <li id="nav-auth"></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Affiché pendant la vérification de connexion -->
+<section class="reservation" id="loadingState">
+    <p style="text-align:center; padding:40px;">Vérification de votre connexion...</p>
+</section>
+
+<section class="reservation" id="reservationSection" style="display:none;">
+
+    <!-- ================= DEUX CÔTÉS ================= -->
+    <div class="order-layout" id="orderLayout">
+
+        <!-- ===== CÔTÉ 1 : FORMULAIRE ===== -->
+        <form class="reservation-form" id="reservationForm">
+
+            <h2>Votre réservation</h2>
+            <p id="formError" class="form-error" style="display:none;"></p>
+
+            <label class="field-label" for="full_name">Nom complet</label>
+            <input type="text" id="full_name" placeholder="Prénom et nom" required>
+
+            <label class="field-label" for="email">Adresse email</label>
+            <input type="email" id="email" placeholder="exemple@email.com" required>
+
+            <label class="field-label" for="phone">Téléphone</label>
+            <input type="tel" id="phone" placeholder="+221 7X XXX XX XX" required>
+
+            <div class="field-row">
+                <div>
+                    <label class="field-label" for="date">Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div>
+                    <label class="field-label" for="time">Heure</label>
+                    <input type="time" id="time" required>
+                </div>
+            </div>
+
+            <label class="field-label" for="guests">Nombre de places</label>
+            <select id="guests" required>
+                <option value="">Choisir...</option>
+                <option value="1">1 place</option>
+                <option value="2">2 places</option>
+                <option value="3">3 places</option>
+                <option value="4">4 places</option>
+                <option value="5">5 places</option>
+                <option value="6">6 places</option>
+                <option value="8">8 places</option>
+                <option value="10">10 places</option>
+            </select>
+
+            <!-- Choix du plat -->
+            <label class="field-label" for="dishSelect">Votre plat</label>
+            <div class="dish-picker">
+                <select id="dishSelect">
+                    <option value="">Chargement du menu...</option>
+                </select>
+                <input type="number" id="dishQty" value="1" min="1" max="50" aria-label="Quantité">
+                <button type="button" id="btnAddDish" class="btn-add"><i class="fas fa-plus"></i> Ajouter</button>
+            </div>
+
+            <!-- Mode de paiement -->
+            <div class="payment-methods">
+                <p class="payment-label">Mode de paiement</p>
+
+                <label class="payment-option">
+                    <input type="radio" name="payment_method" value="card" checked>
+                    <i class="fas fa-credit-card"></i> Carte bancaire
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="payment_method" value="orange_money">
+                    <i class="fas fa-mobile-alt"></i> Orange Money
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="payment_method" value="wave">
+                    <i class="fas fa-mobile-alt"></i> Wave
+                </label>
+                <label class="payment-option">
+                    <input type="radio" name="payment_method" value="sur_place">
+                    <i class="fas fa-store"></i> Payer sur place
+                </label>
+            </div>
+        </form>
+
+        <!-- ===== CÔTÉ 2 : RÉCAPITULATIF DE LA COMMANDE ===== -->
+        <aside class="order-summary">
+
+            <h2><i class="fas fa-receipt"></i> Ma commande</h2>
+
+            <p id="orderEmpty" class="order-empty">Aucun plat pour le moment. Choisissez un plat à gauche, puis cliquez sur « Ajouter ».</p>
+
+            <ul id="orderList" class="order-list"></ul>
+
+            <div class="order-total">
+                <span>Total</span>
+                <strong id="orderTotal">0 FCFA</strong>
+            </div>
+
+            <dl class="summary-info">
+                <dt>Client</dt>      <dd id="sumName">—</dd>
+                <dt>Contact</dt>     <dd id="sumContact">—</dd>
+                <dt>Date et heure</dt><dd id="sumDate">—</dd>
+                <dt>Places</dt>      <dd id="sumGuests">—</dd>
+                <dt>Paiement</dt>    <dd id="sumPayment">Carte bancaire</dd>
+            </dl>
+
+            <div class="form-buttons">
+                <button type="submit" form="reservationForm" class="btn-menu" id="btnValidate">
+                    <i class="fas fa-check"></i> Valider la commande
+                </button>
+                <button type="button" class="btn-cancel" id="btnCancel">
+                    <i class="fas fa-times"></i> Annuler la commande
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Paiement Orange Money / Wave -->
+    <div id="mobilePaymentBox" class="mobile-payment-box" style="display:none;">
+        <h3>Finaliser le paiement</h3>
+        <p id="mobilePaymentInstructions"></p>
+        <input type="text" id="transactionRef" placeholder="ID de transaction reçu par SMS">
+        <button type="button" id="btnConfirmMobile" class="btn-menu">Confirmer mon paiement</button>
+        <p id="mobileConfirmMessage" class="form-success" style="display:none;"></p>
+    </div>
+
+    <!-- Succès (paiement sur place) -->
+    <div id="successBox" class="form-success-box" style="display:none;">
+        <i class="fas fa-check-circle"></i>
+        <p id="successMessage"></p>
+        <a href="index.html" class="btn-menu">Retour à l'accueil</a>
+    </div>
+
+</section>
+
+<script src="js/script.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/reservation.js"></script>
+
+</body>
+</html>

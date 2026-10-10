@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">   
-    <div class="menu-toggle">
-    <i class="fas fa-bars"></i>
-</div>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +15,15 @@
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    <li><a href="reservation.html">Réservation</a></li>
     <!-- ======================HEADER======================= -->
     <header>
-       
+
         <nav class="navbar">
-              <ul class="nav-links"></ul>
-               <div class="menu-toggle">
-               <i class="fas fa-bars"></i>
-           </div>
+
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
             <!-- LOGO -->
             <a href="index.html" class="logo">
                 <img src="images/logo.png" alt="Logo Le Délice">
@@ -41,9 +38,11 @@
                 <li><a href="galerie.html">Galerie</a></li>
                 <li><a href="temoignages.html">Témoignages</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservation.html">Réservation</a></li>
+                <li id="nav-auth"></li>
             </ul>
             <!-- Bouton -->
-            <a href="contact.html" class="btn-reserver">Réserver</a>
+            <a href="reservation.html" class="btn-reserver">Réserver</a>
         </nav>
     </header>
 
@@ -62,7 +61,7 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="specialites.html" class="btn-menu">Découvrir le menu</a>
-                    <a href="contact.html" class="btn-contact">Réserver</a>
+                    <a href="reservation.html" class="btn-contact">Réserver</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
@@ -421,5 +420,6 @@
     </button>
     <!-- ==============JS================ -->
     <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>

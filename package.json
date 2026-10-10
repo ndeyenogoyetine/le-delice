@@ -1,0 +1,23 @@
+{
+  "name": "le-delice",
+  "version": "1.0.0",
+  "description": "Site du restaurant Le Délice avec comptes, réservations et paiement (Stripe, Orange Money, Wave, sur place)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "db:show": "node scripts/show-db.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^12.9.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "stripe": "^16.8.0"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.9.0": true
+  }
+}

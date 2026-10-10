@@ -72,27 +72,7 @@ if (backToTop) {
 }
 
 
-// =====================================================
-// 4. FORMULAIRE DE RÉSERVATION
-// =====================================================
-
-const reservationForm = document.getElementById("reservationForm");
-
-if (reservationForm) {
-
-    reservationForm.addEventListener("submit", (event) => {
-
-        event.preventDefault();
-
-        alert(
-            "🎉 Votre réservation a été enregistrée avec succès !"
-        );
-
-        reservationForm.reset();
-
-    });
-
-}
+// (Le formulaire de réservation est géré par js/reservation.js)
 
 
 // =====================================================
